@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism Destination</title>
+    <style>
+    body{
+background-color: rgba(255, 255, 255, 0.658);
+ padding-right:40px;
+padding-left: 40px;
+    }
+    .content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 40px;
+    background-color: white;
+    border-radius: 18px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    row-gap:15px ;
+    column-gap: 15px;
+    
+    }
+ 
+        .cart-container {
+            margin-top: 50px;
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .cart-container h2 {
+            text-align: center;
+            font-size: 1.8rem;
+        }
+ 
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item span {
+            font-size: 1.2rem;
+        }
+
+        .cart-item .remove {
+            color: red;
+            cursor: pointer;
+        }
+        img{
+            width: 200px;
+            height: 300px;
+        }
+        .card{
+            width: 200px;
+            height: 400px;
+           display: flex;
+          flex-direction: column;
+          border: 2px solid white;
+
+        }
+        button{
+            padding: 6PX;
+            border-radius: 10px;
+            transition: all;
+            transition-duration: 400S;
+
+        }
+        button:hover{
+            background-color: #3DDADB;
+            transform: scale(1.05);
+        }
+        .dark_mode{
+    background-color: #1a1a1a;
+    color: #3DDADB;
+    }
+        
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header" style="text-align: center;color: black;" >
+            <h1>Game-Zone</h1>
+            <button id="mode">mode</button>
+        </div>
+
+        <div class="content">
+        
+            <div class="cards" data-name="GRANd PRIX" data-price="$100">
+                <img src="GUEST_aadb82b2-8c54-4f59-91a1-8a5866643d1f.avif" alt="Athens Greece Walking Tour">
+                <div class="card-details">
+                    <h3>GRANd PRIX</h3>
+                    <h3>$100</h3>
+                    <button class="buy">Add to cart</button>
+                </div>
+            </div>
+
+            <div class="cards" data-name="THE Walking DEAD SEASON TWO" data-price="$920">
+                <img src="apps.18799.69683146824483694.3fc9f01b-fad3-4134-b68d-33fbed8defa1.jfif" alt="Athens Greece Walking Tour">
+                <div class="card-details">
+                    <h3>THE Walking DEAD SEASON TWO</h3>
+                    <h3>$920</h3>
+                    <button class="buy">Add to cart</button>
+                </div>
+            </div>
+            <div class="cards" data-name="F-24" data-price="$450">
+                <img src="apps.50353.14309904834888333.ae73f2e0-1ce2-4244-89ea-266904a2c24f.jfif" alt="Athens Greece Walking Tour">
+                <div class="card-details">
+                    <h3>F-24</h3>
+                    <h3>$450</h3>
+                    <button class="buy">Add to cart</button>
+                </div>
+            </div>
+            <div class="cards" data-name="Spider-Man-2" data-price="$670">
+                <img src="images (1).jfif" alt="Athens Greece Walking Tour">
+                <div class="card-details">
+                    <h3>Spider-Man-2</h3>
+                    <h3>$670</h3>
+                    <button class="buy">Add to cart</button>
+                </div>
+            </div>
+            <div class="cards" data-name="DARK SOULS" data-price="$1200">
+                <img src="images (2).jfif" alt="Athens Greece Walking Tour">
+                <div class="card-details">
+                    <h3>DARK-SOULS/h3>
+                    <h3>$1200</h3>
+                    <button class="buy">Add to cart</button>
+                </div>
+            </div>
+            <div class="cards" data-name="Call of Duty ModernWarefare" data-price="$320">
+                <img src="images (3).jfif" alt="Athens Greece Walking Tour">
+                <div class="card-details">
+                    <h3>Call of Duty ModernWarefare</h3>
+                    <h3>$320</h3>
+                    <button class="buy">Add to cart</button>
+                </div>
+            </div>
+            <div class="cards" data-name="THE Walking DEAD " data-price="$420">
+                <img src="images (4).jfif" alt="Athens Greece Walking Tour">
+                <div class="card-details">
+                    <h3>THE Walking DEAD</h3>
+                    <h3>$420</h3>
+                    <button class="buy">Add to cart</button>
+                </div>
+            </div>
+            <div class="cards" data-name="Resident Evil 2" data-price="$220">
+                <img src="images.jfif" alt="Athens Greece Walking Tour">
+                <div class="card-details">
+                    <h3>Resident Evil 2</h3>
+                    <h3>$220</h3>
+                    <button class="buy">Add to cart</button>
+                </div>
+            </div>
+
+
+        
+
+        </div>
+        
+ 
+        <div class="cart-container">
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+        </div>
+    </div>
+
+    <script>
+        
+    const buttons = document.querySelectorAll('.buy');
+    const button_mode = document.getElementById("mode");
+
+    const cartContainer = document.getElementById('cart-items');
+    const main_Container = document.getElementsByClassName('main')[0];
+    const content_Container = document.getElementsByClassName('content')[0];
+
+    const cart = document.getElementsByClassName("cart-container");
+    const heading=document.getElementsByTagName("h1")[0];
+    const buy_button=document.getElementsByClassName("buy");
+ 
+    button_mode.addEventListener("click", () => {
+        cart[0].classList.toggle("dark_mode");
+        main_Container.classList.toggle("dark_mode");
+        content_Container.classList.toggle("dark_mode");
+        heading.classList.toggle("dark_mode");
+        buy_button.forEach((button)=>{
+        button.classList.toggle("dark_mode");
+
+        });
+    });
+
+    function updateCart() {
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+     
+        cartItems.sort((a, b) => a.name.localeCompare(b.name));
+
+    
+        const uniqueCartItems = Array.from(new Set(cartItems.map(item => item.name)))
+            .map(name => cartItems.find(item => item.name === name));
+
+    
+        uniqueCartItems.reverse();
+
+        cartContainer.innerHTML = '';
+
+        if (uniqueCartItems.length > 0) {
+            uniqueCartItems.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('cart-item');
+                itemElement.innerHTML = `
+                    <span>${item.name} - ${item.price}</span>
+                    <span class="remove" onclick="removeFromCart(${index})">Remove</span>
+                `;
+                cartContainer.appendChild(itemElement);
+            });
+        } else {
+            cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+        }
+    }
+
+    function addToCart(name, price) {
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+     
+        if (cartItems.some(item => item.name === name)) {
+            return;  
+        }
+
+        const newItem = { name, price };
+        cartItems.push(newItem);
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+
+        updateCart();
+    }
+
+    function removeFromCart(index) {
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+        cartItems.splice(index, 1);
+
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+
+        updateCart();
+    }
+
+ 
+    buttons.forEach(button => {
+        button.addEventListener('click', function () {
+            const card = button.closest('.cards');
+            const name = card.getAttribute('data-name');
+            const price = card.getAttribute('data-price');
+
+            addToCart(name, price);
+        });
+    });
+
+
+    updateCart();
+
+    </script>
+</body>
+</html>
